@@ -3,6 +3,7 @@ import { Carousel, Card, Col, Row, Container } from 'react-bootstrap';
 import { Pagination } from '@mui/material';
 import React from 'react';
 import Sidebar from './Sidebar';
+import Image from 'next/image';
 
 interface Bird {
   id: number;
@@ -98,11 +99,14 @@ function MainContent() {
                     <Carousel interval={null}>
                       {bird.images.map((image, imgIndex) => (
                         <Carousel.Item key={imgIndex}>
-                          <img
-                            className="d-block w-100 height-200"
-                            src={image ? image : '/images/bird.jpg'}
-                            alt={`Slide ${imgIndex}`}
-                          />
+                          <div className='bird-image-container'>
+                            <Image
+                                width={375}
+                                height={250}
+                                src={image ? image : '/images/bird.jpg'}
+                                alt={`Slide ${imgIndex}`}
+                              />
+                          </div>
                         </Carousel.Item>
                       ))}
                     </Carousel>
@@ -110,19 +114,25 @@ function MainContent() {
                     <div>
                       {bird.images.length !== 0 ? (
                         bird.images.map((image, imgIndex) => (
-                          <img
-                            key={imgIndex}
-                            className="d-block w-100 height-200"
-                            src={image ? image : '../../public/data/bird.jpg'}
-                            alt={`Image ${imgIndex}`}
-                          />
+                          <div className='bird-image-container'>
+                            <Image
+                              key={imgIndex}
+                              width={375}
+                              height={250}
+                              src={image ? image : '../../public/data/bird.jpg'}
+                              alt={`Image ${imgIndex}`}/>
+                          </div>
                         ))
                       ) : (
-                        <img
-                          className="d-block w-100 height-200"
-                          src='/images/bird.jpg'
-                          alt="Default Bird Image"
-                        />
+
+                        <div className='bird-image-container'>
+                          <Image
+                              width={375}
+                              height={250}
+                              src='/images/bird.jpg'
+                            alt="Default Bird Image"
+                            />
+                        </div>
                       )}
                     </div>
                   )}

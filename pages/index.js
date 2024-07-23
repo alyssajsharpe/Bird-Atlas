@@ -17,11 +17,9 @@ export default function Home() {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <NavBar/>
         <section className='section max-width margin-auto main-content'>
           <MainContent/>
         </section>
-      <Footer/>
     </Layout>
   );
 }

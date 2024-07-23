@@ -7,7 +7,7 @@ export default function aboutMe(){
         <>
         <Layout>
             <Head>
-                <title>About me</title>
+                <title>About Bird</title>
             </Head>
             <div>
                 This is a detailed page about a specific bird you clicked. 
