@@ -1,0 +1,33 @@
+.nav-container {
+    padding: 1rem;
+    background-color: #343434;
+    color: white;
+    text-decoration: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 85px; 
+    z-index: 1000; 
+}
+
+.nav-logo {
+    height: 50px;
+}
+
+.navigation-main-title {
+    font-size: 25px;
+    color: white;
+    padding: 1rem;
+    text-decoration: none;
+}
+
+
+.navigation-title {
+    color: white;
+    padding: 1rem;
+    text-decoration: none;
+    &:hover{
+        color: rgb(219, 219, 219);
+    }
+}

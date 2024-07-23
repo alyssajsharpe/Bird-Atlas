@@ -1,0 +1,19 @@
+.main-logo {height: 200px;}
+  
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#__next {
+  height: 100%;
+  background-color: #fbfbfb !important;
+}
+
+.main-content {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  flex: 1;
+  background-color: #fbfbfb;
+}

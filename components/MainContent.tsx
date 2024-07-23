@@ -73,7 +73,7 @@ function MainContent() {
 
   return (
     <>
-    <div className='display-flex'>
+    <div className='display-flex text-align-center '>
       <Col xs={3}>
         <Sidebar birdSize={birds.length}/>
       </Col>

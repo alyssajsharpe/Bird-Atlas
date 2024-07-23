@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Head from 'next/head';
-import Script from 'next/script';
 import Layout from '../../components/layout';
 
 export default function aboutMe(){
@@ -11,7 +10,7 @@ export default function aboutMe(){
                 <title>About me</title>
             </Head>
             <div>
-                This is a page that is about me.
+                This is a detailed page about a specific bird you clicked. 
                 <Link href="/"><h2>Head back to the homepage</h2></Link>
             </div>
         </Layout>

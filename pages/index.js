@@ -4,6 +4,7 @@ import utilStyles from '../styles/utils.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import NavBar from '../components/NavBar';
+import Footer from '../components/Footer';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import MainContent from '../components/MainContent'
@@ -12,15 +13,15 @@ import Sidebar from '../components/Sidebar';
 export default function Home() {
   return (
 
-    <Layout home>
+    <Layout home id="root">
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <NavBar />
-
-      <section >
-        <MainContent/>
-      </section>
+      <NavBar/>
+        <section className='section max-width margin-auto main-content'>
+          <MainContent/>
+        </section>
+      <Footer/>
     </Layout>
   );
 }

@@ -1,0 +1,9 @@
+@charset "UTF-8";
+/* The following line can be included in a src/App.scss */
+@import '../node_modules/bootstrap/';
+
+@import './layouts/mainContent.scss';
+@import './layouts/navigation.scss';
+@import './layouts/sidebar.scss';
+@import './layouts/footer.scss';
+
