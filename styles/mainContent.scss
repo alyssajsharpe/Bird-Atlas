@@ -1,0 +1,103 @@
+
+/* The following line can be included in a src/App.scss */
+@import '../node_modules/bootstrap/';
+
+/**********************************************************************
+1. Width & Height
+***********************************************************************/
+.width-100 {width: 100%;}
+.width-75 {width: 75%;}
+.width-50 {width: 50%;}
+.width-25 {width: 25%;}
+.width-auto {width: auto;}
+
+.height-200 {height: 200px;}
+
+
+/**********************************************************************
+2. Padding & Margins 
+***********************************************************************/
+.padding-xsmall {padding: 0.5rem;}
+.padding-small {padding: 1rem;}
+.padding-medium {padding: 1.5rem;}
+.padding-large {padding: 2rem;}
+.padding-xlarge {padding: 2.5rem;}
+
+.padding-top-xsmall {padding-top: 0.5rem;}
+.padding-top-small {padding-top: 1rem;}
+.padding-top-medium {padding-top: 1.5rem;}
+.padding-top-large {padding-top: 2rem;}
+.padding-top-xlarge {padding-top: 2.5rem;}
+
+.padding-bottom-xsmall {padding-bottom: 0.5rem;}
+.padding-bottom-small {padding-bottom: 1rem;}
+.padding-bottom-medium {padding-bottom: 1.5rem;}
+.padding-bottom-large {padding-bottom: 2rem;}
+.padding-bottom-xlarge {padding-bottom: 2.5rem;}
+
+.margin-xsmall {margin: 0.5rem;}
+.margin-small {margin: 1rem;}
+.margin-medium {margin: 1.5rem;}
+.margin-large {margin: 2rem;}
+.margin-xlarge {margin: 2.5rem;}
+
+.margin-top-xsmall {margin-top: 0.5rem;}
+.margin-top-small {margin-top: 1rem;}
+.margin-top-medium {margin-top: 1.5rem;}
+.margin-top-large {margin-top: 2rem;}
+.margin-top-xlarge {margin-top: 2.5rem;}
+
+.margin-bottom-xsmall {margin-bottom: 0.5rem;}
+.margin-bottom-small {margin-bottom: 1rem;}
+.margin-bottom-medium {margin-bottom: 1.5rem;}
+.margin-bottom-large {margin-bottom: 2rem;}
+.margin-bottom-xlarge {margin-bottom: 2.5rem;}
+
+/**********************************************************************
+3. Font & Backgrounds
+***********************************************************************/
+.white-bg {background-color: white;}
+.black-text{color: black;}
+.text-align-center {text-align: center;}
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+/**********************************************************************
+4. Blocks
+***********************************************************************/
+.display-flex {display: flex;}
+
+/**********************************************************************
+5. Custom classes
+***********************************************************************/
+.grey-border {
+    border: 1px solid rgb(230, 230, 230);
+}
+
+.column-wrapper {
+    display: flex !important;
+    height: 100%;
+}
+  
+  .card {
+    flex-grow: 1 !important;
+  }
+  
+  .custom-cursor {
+    &:hover {
+        cursor: pointer;
+    }
+  }
+
+
+  .bird-title {
+    font-weight: 700;
+  }
+
+  .bird-desc {
+    font-style: italic;
+  }
+  
+  

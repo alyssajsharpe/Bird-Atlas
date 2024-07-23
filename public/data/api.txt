@@ -1,0 +1,27 @@
+
+   // Uncomment this when pushing live to use real data
+   // Add to maincontent.tsx
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       let allBirds: any[] = [];
+  //       for (let i = 1; i <= 11; i++) {
+  //         const response = await axios.get(`https://nuthatch.lastelm.software/v2/birds?page=${i}&pageSize=100`, {
+  //           headers: {
+  //             'accept': 'application/json',
+  //             'API-Key': '46dedca6-2a06-49dc-b03b-fa39dc2a1db2'
+  //           }
+  //         });
+  //         allBirds = [...allBirds, ...response.data.entities];
+  //         console.log(`Page ${i} data:`, response.data);
+  //       }
+  //       const sortedData = allBirds.sort((a, b) => a.name.localeCompare(b.name));
+  //       setBirds(sortedData);
+  //     } catch (error) {
+  //       // Handle errors
+  //       console.error('Error fetching data:', error);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);

@@ -1,0 +1,43 @@
+.filter-header {
+    text-align: center;
+    font-weight: 700;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+.filter-section-header {
+    text-align: left;
+    font-weight: 700;
+    font-size: 22px;
+}
+
+.color-checkboxes {
+  display: flex; 
+  flex-wrap: wrap;
+  overflow-y: auto;
+}
+  
+.search-bar-container {
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  background-color: white;
+  color: black;
+}
+
+.search-input::placeholder {
+  color: #151515;
+}
+
+
+.custom-height {
+  height: 96.4%;
+}
