@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Carousel, Card, Col, Row, Container } from 'react-bootstrap';
 import { Pagination } from '@mui/material';
 import React from 'react';
@@ -63,7 +63,7 @@ function MainContent() {
       bird.sciName.toLowerCase().includes(searchQuery.toLowerCase())
     );
     setFilteredBirds(filtered);
-    setCurrentPage(1); // Reset current page when search query changes
+    setCurrentPage(1); 
   }, [searchQuery, birds]);
 
    // Calculate pagination variables after filtering
@@ -72,11 +72,18 @@ function MainContent() {
    const currentBirds = filteredBirds.slice(startIndex, endIndex);
    const totalPages = Math.ceil(filteredBirds.length / birdsPerPage);
 
+  // Callback to update filtered birds from Sidebar
+  const updateFilteredBirds = useCallback((filtered) => {
+    setFilteredBirds(filtered);
+    setCurrentPage(1); // Reset current page when filters change
+
+  }, []);
+
   return (
     <>
     <div className='display-flex text-align-center '>
       <Col xs={3}>
-        <Sidebar birdSize={birds.length}/>
+        <Sidebar birdSize={birds.length} birds={birds} updateFilteredBirds={updateFilteredBirds} />
       </Col>
       <Col xs={9}>
         <div className='search-bar-container'>
