@@ -15,13 +15,11 @@ export default function Layout({ children }) {
         <link rel="icon" href="/favicon.ico" />
         <meta
           name="description"
-          content="This is a site featuring Alyssa Sharpe's recent projects and highlights."
+          content="This is a site featuring a large index of Birds from North America and Western Europe."
         />
         <meta name="og:title" content={siteTitle} />
-        <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <header className={styles.header}>
-      </header>
+      <header className={styles.header}></header>
 
       <NavBar/>
         <main>{children}</main>

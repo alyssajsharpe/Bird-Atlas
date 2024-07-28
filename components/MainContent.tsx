@@ -4,19 +4,28 @@ import { Pagination } from '@mui/material';
 import React from 'react';
 import Sidebar from './Sidebar';
 import Image from 'next/image';
+import BirdPopup from './BirdModal';
 
-interface Bird {
+export interface Bird {
   id: number;
   name: string;
-  sciName: string; 
+  sciName: string;
   description: string;
-  images: [];
+  images: string[];
+  lengthMin: string;
+  lengthMax: string;
+  region: string[];
+  family: string;
 }
+
 
 function MainContent() {
   const [birds, setBirds] = useState<Bird[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredBirds, setFilteredBirds] = useState<Bird[]>([]);
+  const [selectedBird, setSelectedBird] = useState<Bird | null>(null);
+  const [showPopup, setShowPopup] = useState(false);
+  const [clickPosition, setClickPosition] = useState({ top: 0, left: 0 });
 
   // Pagination Variables
   const birdsPerPage = 12;
@@ -76,8 +85,21 @@ function MainContent() {
   const updateFilteredBirds = useCallback((filtered) => {
     setFilteredBirds(filtered);
     setCurrentPage(1); // Reset current page when filters change
-
   }, []);
+
+  // Handle popup open
+  const handleImageClick = (event, bird) => {
+    const rect = event.target.getBoundingClientRect();
+    setClickPosition({ top: rect.top + window.scrollY, left: rect.left + window.scrollX });
+    setSelectedBird(bird);
+    setShowPopup(true);
+  };
+
+  // Handle popup close
+  const handleClosePopup = () => {
+    setShowPopup(false);
+    setSelectedBird(null);
+  };
 
   return (
     <>
@@ -106,7 +128,7 @@ function MainContent() {
                     <Carousel interval={null}>
                       {bird.images.map((image, imgIndex) => (
                         <Carousel.Item key={imgIndex}>
-                          <div className='bird-image-container'>
+                          <div className='bird-image-container' onClick={(event) => handleImageClick(event, bird)}>
                             <Image
                                 width={375}
                                 height={250}
@@ -121,7 +143,7 @@ function MainContent() {
                     <div>
                       {bird.images.length !== 0 ? (
                         bird.images.map((image, imgIndex) => (
-                          <div className='bird-image-container'>
+                          <div className='bird-image-container' onClick={(event) => handleImageClick(event, bird)}>
                             <Image
                               key={imgIndex}
                               width={375}
@@ -132,7 +154,7 @@ function MainContent() {
                         ))
                       ) : (
 
-                        <div className='bird-image-container'>
+                        <div className='bird-image-container' onClick={(event) => handleImageClick(event, bird)}>
                           <Image
                               width={375}
                               height={250}
@@ -167,6 +189,14 @@ function MainContent() {
         </Container>
       </Col>
       </div>
+      
+      {/* Bird Details Popup */}
+      <BirdPopup
+        show={showPopup}
+        bird={selectedBird}
+        onClose={handleClosePopup}
+        position={clickPosition}
+      />
     </>
   );
 }

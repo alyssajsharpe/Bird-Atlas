@@ -106,5 +106,29 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
   }
   
+
+  .bird-popup {
+    position: absolute;
+    z-index: 1050; 
+  }
+  
+  .bird-popup-card {
+    width: 300px; 
+  }
+  
+
+  .back-button {
+    float: right;
+    top: 0;
+    right: 0;
+    position: absolute;
+    margin: 5px;
+  }
+
+  .container-margins {
+    margin-top: 100px;
+    margin-bottom: 100px;
+  }
