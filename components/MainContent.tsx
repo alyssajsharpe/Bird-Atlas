@@ -36,11 +36,6 @@ function MainContent() {
     setCurrentPage(page);
   };
 
-  // Handle search input change
-  const handleSearchInputChange = (event) => {
-    setSearchQuery(event.target.value);
-  };
-
   // Get the bird data and map it on page load
   useEffect(() => {
     const fetchData = async () => {
@@ -103,34 +98,28 @@ function MainContent() {
 
   return (
     <>
-    <div className='display-flex text-align-center '>
-      <Col xs={3}>
-        <Sidebar birdSize={birds.length} birds={birds} updateFilteredBirds={updateFilteredBirds} />
-      </Col>
-      <Col xs={9}>
-        <div className='search-bar-container'>
-          <input
-            type="text"
-            placeholder="Search for birds..."
-            value={searchQuery}
-            onChange={handleSearchInputChange}
-            className="search-input"
-          />
-        </div>
-      
-          <Row xs={1} md={2} lg={3} className="g-1">
+    <div className='text-align-center '>
+      <Row xs={12}>
+        <Sidebar 
+            birdSize={birds.length} 
+            birds={birds} 
+            updateFilteredBirds={updateFilteredBirds} 
+            searchQuery={searchQuery} 
+            setSearchQuery={setSearchQuery}/>
+      </Row>
+      <Row xs={12}>
+          <Row xs={2} md={3} lg={4} className="g-1">
           {currentBirds.map((bird, index) => (          
             <Col key={index}>
               <div className="column-wrapper">
                 <Card className="d-flex flex-column h-100">
-                  
                   {bird.images.length > 1 ? (
                     <Carousel interval={null}>
                       {bird.images.map((image, imgIndex) => (
                         <Carousel.Item key={imgIndex}>
                           <div className='bird-image-container' onClick={(event) => handleImageClick(event, bird)}>
                             <Image
-                                width={375}
+                                width={500}
                                 height={250}
                                 src={image ? image : '/images/bird.jpg'}
                                 alt={`Slide ${imgIndex}`}
@@ -146,7 +135,7 @@ function MainContent() {
                           <div className='bird-image-container' onClick={(event) => handleImageClick(event, bird)}>
                             <Image
                               key={imgIndex}
-                              width={375}
+                              width={500}
                               height={250}
                               src={image ? image : '../../public/data/bird.jpg'}
                               alt={`Image ${imgIndex}`}/>
@@ -156,7 +145,7 @@ function MainContent() {
 
                         <div className='bird-image-container' onClick={(event) => handleImageClick(event, bird)}>
                           <Image
-                              width={375}
+                              width={500}
                               height={250}
                               src='/images/bird.jpg'
                             alt="Default Bird Image"
@@ -187,7 +176,7 @@ function MainContent() {
                 />
             </Row>
         </Container>
-      </Col>
+      </Row>
       </div>
       
       {/* Bird Details Popup */}

@@ -16,16 +16,11 @@
   flex-wrap: wrap;
   overflow-y: auto;
 }
-  
-.search-bar-container {
-  align-items: center;
-  margin-bottom: 5px;
-}
 
 .search-input {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
+  padding: 6.5px;
+  border: 1px solid #e2e2e2;
   border-radius: 5px;
   font-size: 16px;
   outline: none;
@@ -40,4 +35,13 @@
 
 .custom-height {
   height: 96.4%;
+}
+
+.center {
+  text-align: center;
+  margin: auto;
+  margin-right: auto;
+  margin-left: auto;
+  justify-content: center;
+  align-content: center;
 }

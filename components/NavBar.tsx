@@ -8,7 +8,7 @@ export default function NavBar() {
   return (
     <nav className="nav-container">
         <Image 
-        width={100}
+        width={75}
         height={75}
         className='nav-logo' src='/images/bird.jpg' alt={''}></Image>
         <Link href="/" className="navigation-main-title">Bird Atlas</Link>

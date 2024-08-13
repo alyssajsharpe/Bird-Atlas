@@ -1,15 +1,15 @@
-import { Form } from 'react-bootstrap';
+import { Button, Col, Form, InputGroup } from 'react-bootstrap';
 import Stack from 'react-bootstrap/Stack';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { useEffect, useState, useCallback } from 'react';
 import React from 'react';
 
-const birdColors = ["Blue","Red","Black","White","Yellow"];
-const birdSizes = ["Tiny","Small","Medium","Large"]
-const birdRegions = ["North America","Western Europe"];
-const birdStatus = ["Low Concern", "Restricted Range", "Common Bird in Steep Decline", "Declining", "Red Watch List"]
-const birdLocation = ["Ocean","Trees","Pond","Ground","Soaring"];
+const birdColors = ['Blue','Red','Black','White','Yellow'];
+const birdSizes = ['Tiny','Small','Medium','Large']
+const birdRegions = ['North America','Western Europe'];
+const birdStatus = ['Low Concern', 'Restricted Range', 'Common Bird in Steep Decline', 'Declining', 'Red Watch List']
+const birdLocation = ['Ocean','Trees','Pond','Ground','Soaring'];
 
 interface Bird {
   id: number;
@@ -23,7 +23,7 @@ interface Bird {
   status: string;
 }
 
-const Sidebar = ({ birdSize, birds, updateFilteredBirds }) => {
+const Sidebar = ({ birdSize, birds, updateFilteredBirds, searchQuery, setSearchQuery }) => {
   const [selectedRegions, setSelectedRegions] = useState<String[]>([]);
   const [selectedSizes, setSelectedSizes] = useState<String[]>([]);
   const [selectedStatuses, setSelectedStatuses] = useState<String[]>([]);
@@ -59,12 +59,24 @@ const Sidebar = ({ birdSize, birds, updateFilteredBirds }) => {
     });
   }, []);
 
+  const clearFilters = () => {
+    setSelectedStatuses([]);
+    setSelectedSizes([]);
+    setSelectedRegions([]);
+  }
+  
+  // Handle search input change
+  const handleSearchInputChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+
   const getSizeCategory = (lengthMin, lengthMax) => {
     const avgLength = (parseFloat(lengthMin) + parseFloat(lengthMax)) / 2;
-    if (avgLength < 12) return "Tiny";
-    if (avgLength < 20) return "Small";
-    if (avgLength < 35) return "Medium";
-    return "Large";
+    if (avgLength < 12) return 'Tiny';
+    if (avgLength < 20) return 'Small';
+    if (avgLength < 35) return 'Medium';
+    return 'Large';
   };
 
   useEffect(() => {
@@ -82,63 +94,58 @@ const Sidebar = ({ birdSize, birds, updateFilteredBirds }) => {
   return (
     <>
 
-      <div className="white-bg black-text grey-border custom-height">
-          <div className='filter-header padding-top-small text-align-center'>Bird Specifics</div>
-          <div className="p-1">Index size: {birdSize} birds</div>
-          <Container>
+      <div className='white-bg black-text'>
+          <div className='filter-header padding-top-small text-align-center padding-small'>Search from {birdSize} birds</div>
+          <div className='center'>
             <Row>
-              <div className="p-4">
-                  {/* Region */}
-                  <div className="p-2">
-                    <h3 className='filter-section-header padding-bottom-xsmall'>Region</h3>
-                      <Stack direction="horizontal" gap={3} className="filter-checkboxes">
-                        {birdRegions.map((region, index) => (
-                            <div key={index} className="p-1 custom-cursor">
-                              <Form.Check
-                                type="checkbox"
-                                id={`default-checkbox-${index}`}
-                                label={region}
-                                onChange={() => handleRegionChange(region)}
-                              />
-                            </div>
-                          ))}
-                      </Stack>
-                  </div>
-                  {/* Size */}
-                  <div className="p-2">
-                    <h3 className='filter-section-header padding-bottom-xsmall'>Size</h3>
-                    <Stack direction="horizontal" gap={3} className="filter-checkboxes">
-                      {birdSizes.map((size, index) => (
-                        <div key={index} className="p-1 custom-cursor">
-                          <Form.Check
-                            type="checkbox"
-                            id={`default-checkbox-size-${index}`}
-                            label={size}
-                            onChange={() => handleSizeChange(size)}
-                          />
-                        </div>
-                      ))}
-                    </Stack>
-                  </div>
-                  {/* Status */}
-                  <div className="p-2">
-                    <h3 className='filter-section-header padding-bottom-xsmall'>Status</h3>
-                    <Stack direction="horizontal" gap={3} className="filter-checkboxes">
-                      {birdStatus.map((size, index) => (
-                        <div key={index} className="p-1 custom-cursor">
-                          <Form.Check
-                            type="checkbox"
-                            id={`default-checkbox-size-${index}`}
-                            label={size}
-                            onChange={() => handleStatusChange(size)}
-                          />
-                        </div>
-                      ))}
-                    </Stack>
-                  </div>
-              </div>
-              </Row>
-          </Container>
+              <Col xs='auto' className='p-2'>
+                <InputGroup className='mb-3'>
+                  <Form.Control
+                    type='text'
+                    placeholder='Search for Birds'
+                    value={searchQuery}
+                    onChange={handleSearchInputChange}
+                    aria-label='Search for birds'
+                  />
+                </InputGroup>
+              </Col>
+              <Col xs='auto' className='p-2'>
+                <Form.Select onChange={(e) => handleRegionChange(e.target.value)} aria-label='Select Region'>
+                  <option value=''>Select a Region</option>
+                  {birdRegions.map((region, index) => (
+                    <option key={index} value={region}>
+                      {region}
+                    </option>
+                  ))}
+                </Form.Select>
+              </Col>
+
+              <Col xs='auto' className='p-2'>
+                <Form.Select onChange={(e) => handleSizeChange(e.target.value)} aria-label='Select Size'>
+                  <option value=''>Select a Size</option>
+                  {birdSizes.map((size, index) => (
+                    <option key={index} value={size}>
+                      {size}
+                    </option>
+                  ))}
+                </Form.Select>
+              </Col>
+
+              <Col xs='auto' className='p-2'>
+                <Form.Select onChange={(e) => handleStatusChange(e.target.value)} aria-label='Select Status'>
+                  <option value=''>Select a Status</option>
+                  {birdStatus.map((status, index) => (
+                    <option key={index} value={status}>
+                      {status}
+                    </option>
+                  ))}
+                </Form.Select>
+              </Col>
+              <Col xs='auto' className='p-2'>
+              <Button onChange={(e) => clearFilters()} aria-label='Clear Filters' className=''> Clear Filters</Button>
+              </Col>
+            </Row>
+          </div>
       </div>
     </>
   );
