@@ -8,7 +8,7 @@ import Footer from '../components/Footer';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import MainContent from '../components/MainContent'
-import Sidebar from '../components/Sidebar';
+import FilterBar from '../components/FilterBar';
 
 export default function Home() {
   return (

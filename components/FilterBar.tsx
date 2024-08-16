@@ -23,10 +23,10 @@ interface Bird {
   status: string;
 }
 
-const Sidebar = ({ birdSize, birds, updateFilteredBirds, searchQuery, setSearchQuery }) => {
-  const [selectedRegions, setSelectedRegions] = useState<String[]>([]);
-  const [selectedSizes, setSelectedSizes] = useState<String[]>([]);
-  const [selectedStatuses, setSelectedStatuses] = useState<String[]>([]);
+const FilterBar = ({ birdSize, birds, updateFilteredBirds, searchQuery, setSearchQuery, resetBirdList }) => {
+  const [selectedRegions, setSelectedRegions] = useState<string[]>([]);
+  const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
+  const [selectedStatuses, setSelectedStatuses] = useState<string[]>([]);
 
 
   const handleRegionChange = useCallback((region) => {
@@ -60,9 +60,11 @@ const Sidebar = ({ birdSize, birds, updateFilteredBirds, searchQuery, setSearchQ
   }, []);
 
   const clearFilters = () => {
+    console.log('Clearing birds')
     setSelectedStatuses([]);
     setSelectedSizes([]);
     setSelectedRegions([]);
+    resetBirdList();
   }
   
   // Handle search input change
@@ -110,7 +112,7 @@ const Sidebar = ({ birdSize, birds, updateFilteredBirds, searchQuery, setSearchQ
                 </InputGroup>
               </Col>
               <Col xs='auto' className='p-2'>
-                <Form.Select onChange={(e) => handleRegionChange(e.target.value)} aria-label='Select Region'>
+                <Form.Select value={selectedRegions[0] || ''} onChange={(e) => handleRegionChange(e.target.value)} aria-label='Select Region'>
                   <option value=''>Select a Region</option>
                   {birdRegions.map((region, index) => (
                     <option key={index} value={region}>
@@ -121,7 +123,7 @@ const Sidebar = ({ birdSize, birds, updateFilteredBirds, searchQuery, setSearchQ
               </Col>
 
               <Col xs='auto' className='p-2'>
-                <Form.Select onChange={(e) => handleSizeChange(e.target.value)} aria-label='Select Size'>
+                <Form.Select value={selectedSizes[0] || ''} onChange={(e) => handleSizeChange(e.target.value)} aria-label='Select Size'>
                   <option value=''>Select a Size</option>
                   {birdSizes.map((size, index) => (
                     <option key={index} value={size}>
@@ -132,7 +134,7 @@ const Sidebar = ({ birdSize, birds, updateFilteredBirds, searchQuery, setSearchQ
               </Col>
 
               <Col xs='auto' className='p-2'>
-                <Form.Select onChange={(e) => handleStatusChange(e.target.value)} aria-label='Select Status'>
+                <Form.Select value={selectedStatuses[0] || ''} onChange={(e) => handleStatusChange(e.target.value)} aria-label='Select Status'>
                   <option value=''>Select a Status</option>
                   {birdStatus.map((status, index) => (
                     <option key={index} value={status}>
@@ -142,7 +144,7 @@ const Sidebar = ({ birdSize, birds, updateFilteredBirds, searchQuery, setSearchQ
                 </Form.Select>
               </Col>
               <Col xs='auto' className='p-2'>
-              <Button onChange={(e) => clearFilters()} aria-label='Clear Filters' className=''> Clear Filters</Button>
+              <Button onClick={clearFilters} aria-label='Clear Filters' className=''> Clear Filters</Button>
               </Col>
             </Row>
           </div>
@@ -151,4 +153,4 @@ const Sidebar = ({ birdSize, birds, updateFilteredBirds, searchQuery, setSearchQ
   );
 };
 
-export default Sidebar;
+export default FilterBar;

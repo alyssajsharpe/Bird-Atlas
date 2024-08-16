@@ -26,7 +26,9 @@ const BirdPopup: React.FC<BirdPopupProps> = ({ show, bird, onClose, position }) 
   return (
     <div className="bird-popup" style={{ top: position.top, left: position.left }}>
           <Card className="bird-popup-card">
-              <Card.Header onClick={onClose}>
+                
+              <Card.Header>
+                   <Button className='close-button' onClick={onClose}>Close</Button>
                   <Card.Title>{bird.name}</Card.Title>
               </Card.Header>
               <Card.Body>

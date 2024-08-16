@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { Carousel, Card, Col, Row, Container } from 'react-bootstrap';
 import { Pagination } from '@mui/material';
 import React from 'react';
-import Sidebar from './Sidebar';
+import FilterBar from './FilterBar';
 import Image from 'next/image';
 import BirdPopup from './BirdModal';
 
@@ -21,6 +21,8 @@ export interface Bird {
 
 function MainContent() {
   const [birds, setBirds] = useState<Bird[]>([]);
+  const [permanentBirdList, setPermanentBirdList] = useState<Bird[]>([]);
+
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredBirds, setFilteredBirds] = useState<Bird[]>([]);
   const [selectedBird, setSelectedBird] = useState<Bird | null>(null);
@@ -51,6 +53,7 @@ function MainContent() {
           if(data){
             const sortedData = data.sort((a, b) => a.name.localeCompare(b.name));
             setBirds(sortedData);
+            setPermanentBirdList(sortedData);
           }
         })
       } catch (e) {
@@ -96,16 +99,22 @@ function MainContent() {
     setSelectedBird(null);
   };
 
+  const resetBirdList = () =>{
+    console.log('Setting birds to original list')
+    setBirds(permanentBirdList);
+  }
+
   return (
     <>
     <div className='text-align-center '>
       <Row xs={12}>
-        <Sidebar 
+        <FilterBar 
             birdSize={birds.length} 
             birds={birds} 
             updateFilteredBirds={updateFilteredBirds} 
             searchQuery={searchQuery} 
-            setSearchQuery={setSearchQuery}/>
+            setSearchQuery={setSearchQuery}
+            resetBirdList={resetBirdList}/>
       </Row>
       <Row xs={12}>
           <Row xs={2} md={3} lg={4} className="g-1">
@@ -165,7 +174,7 @@ function MainContent() {
           ))}
         </Row>
         {/* Pagination */}
-          <Container>
+          <Container className='pt-2'>
             <Row>
                 <Pagination
                   className='center margin-top-small'
@@ -186,6 +195,8 @@ function MainContent() {
         onClose={handleClosePopup}
         position={clickPosition}
       />
+
+      <Container className='center padding-large'>Bird Atlas v1.0.2</Container>
     </>
   );
 }
