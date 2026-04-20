@@ -6,6 +6,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Footer from '../../components/Footer';
 import NavBar from '../../components/NavBar';
+import birdJson from '../../public/data/birds.json';
+
 
 export interface Recording {
     date: string;
@@ -122,9 +124,7 @@ export default BirdPage;
 
 // Fetch all bird IDs to generate static pages
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetch('http://localhost:3000/data/birds.json');
-  const birds: Bird[] = await res.json();
-
+  const birds = birdJson;
   const paths = birds.map((bird) => ({
     params: { id: bird.id.toString() },
   }));
@@ -135,8 +135,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 // Fetch bird data based on ID
 export const getStaticProps: GetStaticProps = async (context) => {
   const { id } = context.params!;
-  const res = await fetch(`http://localhost:3000/data/birds.json`);
-  const birds: Bird[] = await res.json();
+  const birds = birdJson;
   const bird = birds.find((bird) => bird.id.toString() === id);
 
   return { props: { bird } };
